@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Table Thumbnail</title>
+  <style>
+    table {
+      border-collapse: collapse;
+      width: 300px;
+    }
+
+    th,
+    td {
+      border: 1px solid black;
+      padding: 8px;
+      text-align: center;
+    }
+
+    th {
+      background-color: #f2f2f2;
+    }
+
+    body {
+      direction: rtl;
+    }
+  </style>
+</head>
+
+<body>
+  <table>
+    <h1>bags</h1>
+    <thead>
+      <tr>
+        <th>method</th>
+        <th>כתובת</th>
+        <th>פרמטרים</th>
+        <th>body</th>
+        <th>מה מחזיר</th>
+        <th>פרמטרים אופציונליים</th>
+        <th>crud operation</th>
+        <th>מקרי קיצון- תשובה מהשרת</th>
+        <th>תיאור</th>
+        <th>headers</th>
+        <th>הרשאות</th>
+
+
+
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>get</td>
+        <td>api/bags</td>
+        <td>-</td>
+        <td>-</td>
+        <td>bags[{company,description,color,price,size,height,width,length,imgUrl,generateDate }]</td>
+        <td>search,numPages,page,perPage</td>
+        <td>read</td>
+        <td>-</td>
+        <td>שליפת כל התיקים</td>
+        <td>-</td>
+        <td>כולם</td>
+      </tr>
+
+
+      <tr>
+        <td>get</td>
+        <td>api/bags/{id}</td>
+        <td>id קוד תיק</td>
+        <td>-</td>
+        <td>{company,description,color,price,size,height,width,length,imgUrl,generateDate }</td>
+        <td>-</td>
+        <td>read</td>
+        <td>אם הקוד לא תקין- שגיאה 400 אם התיק לא קיים שגיאה 404</td>
+        <td>שליפת תיק לפי קוד</td>
+        <td>-</td>
+        <td>כולם</td>
+      </tr>
+      <tr>
+        <td>post</td>
+        <td>api/bags</td>
+        <td>-</td>
+        <td>{company,description,color,price,size,height,width,length,imgUrl,generateDate }
+          (company, color, price)-שדות חובה
+        </td>
+        <td>{company,description,color,price,size,height,width,length,imgUrl,generateDate }</td>
+        <td>-</td>
+        <td>create</td>
+        <td>אם חסר חברה , מחיר או צבע
+          מחזיר שגיאה 404 ואם קיים תיק זה מחזיר שגיאה 409
+        </td>
+        <td>הוספת תיק חדש למסד הנתונים והחזרת פרטיו</td>
+        <td>x-access-token</td>
+        <td>מנהל</td>
+      </tr>
+
+
+
+      <tr>
+        <td>put</td>
+        <td>api/bags/{id}</td>
+        <td>id
+          קוד תיק
+        </td>
+        <td>{company,description,color,price,size,height,width,length,imgUrl,generateDate }
+        </td>
+        <td>{company,description,color,price,size,height,width,length,imgUrl,generateDate }</td>
+        <td>-</td>
+        <td>update</td>
+        <td>אם הקוד אינו תקין שגיאה 400 ואם התיק אינו קיים שגיאה 404
+        </td>
+        <td>עדכון פרטי תיק והחזרת פרטיו </td>
+        <td>x-access-token</td>
+        <td>מנהל</td>
+      </tr>
+
+      <tr>
+        <td>delete</td>
+        <td>api/bags/{id}</td>
+        <td>id קוד תיק</td>
+        <td>-</td>
+        <td>{company,description,color,price,size,height,width,length,imgUrl,generateDate }</td>
+        <td>-</td>
+        <td>delete</td>
+        <td>אם הקוד אינו תקין שגיאה 400 ואם התיק אינו קיים שגיאה 404</td>
+        <td>מחיקת תיק לפי קוד והחזרת פרטיו</td>
+        <td>x-access-token</td>
+        <td>מנהל</td>
+      </tr>
+    </tbody>
+  </table>
+</body>
+
+</html>

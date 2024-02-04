@@ -1,0 +1,32 @@
+import jwt from "jsonwebtoken";
+
+export const auth = (req, res, next) => {
+    let token = req.headers["x-access-token"];
+    if (!token)
+        return res.status(403).send("missing token please sign in");
+    try {
+        req.user = jwt.verify(token, process.env.JWT_SECRET);
+        next();
+    }
+    catch (err) {
+        res.status(401).send("this token is not authorized");
+    }
+}
+
+export const authAdmin = (req, res, next) => {
+    let token = req.headers["x-access-token"];
+    if (!token)
+        return res.status(403).send("missing token please sign in");
+    try {
+        let userAdmin = jwt.verify(token, process.env.JWT_SECRET);
+        if (userAdmin.role === 'ADMIN') {
+            req.user = userAdmin;
+            next();
+        }
+        else
+            return res.status(403).send("you do not have permission for this action");
+    }
+    catch (err) {
+        res.status(401).send("this token is not authorized");
+    }  
+} 
