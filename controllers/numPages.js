@@ -3,7 +3,8 @@ import { Bag } from '../models/bag.js';
 export const getNumPages = async (req, res) => {
     try {
         let allBags = await Bag.countDocuments();
-        return res.json(allBags);
+        let jsonBag = JSON.stringify(allBags);
+        return res.send(jsonBag);
     }
 
     catch (err) {
