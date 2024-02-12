@@ -3,10 +3,7 @@ import { Bag } from '../models/bag.js';
 export const getNumPages = async (req, res) => {
     try {
         let allBags = await Bag.countDocuments();
-        let perPage = req.query.perPage || 10;
-
-        let numPages = Math.ceil(allBags / perPage)
-        return res.json(numPages);
+        return res.json(allBags);
     }
 
     catch (err) {
