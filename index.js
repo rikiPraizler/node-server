@@ -6,6 +6,7 @@ import bagRouter from "./routes/bag.js";
 import cors from "cors";
 import { errorHandling } from "./middlewares/errorHandling.js";
 import orderRouter from "./routes/order.js";
+import pageRouter from "./routes/numPages.js";
 
 config();  
 connectToDB();
@@ -18,6 +19,7 @@ app.use(express.static('images'));
 app.use("/api/users", userRouter); 
 app.use("/api/bags", bagRouter);
 app.use("/api/orders", orderRouter);
+app.use("/api/numPages",pageRouter);
   
 app.use(errorHandling); 
 let port = process.env.PORT || 4000;
